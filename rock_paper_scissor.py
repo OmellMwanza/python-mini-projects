@@ -1,9 +1,13 @@
 import random
 
+ROCK = 'r'
+PAPER = 'p'
+SCISSORS = 's'
+
 emojis = {
-    'r': '🪨',
-    'p': '📄',
-    's': '✂️'
+    ROCK: '🪨',
+    PAPER: '📄',
+    SCISSORS: '✂️'
 }
 
 def get_user_choice():
@@ -23,9 +27,9 @@ def determine_winner(user_choice, computer_choice):
         print("Tie!")
 
     elif (
-        (user_choice == 'r' and computer_choice == 's') or
-        (user_choice == 'p' and computer_choice == 'r') or
-        (user_choice == 's' and computer_choice == 'p')
+        (user_choice == ROCK and computer_choice == SCISSORS) or
+        (user_choice == PAPER and computer_choice == ROCK) or
+        (user_choice == SCISSORS and computer_choice == PAPER)
     ):
         print("You win!")
     else:
