@@ -1,32 +1,18 @@
 import qrcode
 
-def generate_qr_code(data, filename):
-    if not data.strip():
-        print("Error: Data cannot be empty.")
-        return
+data = input('Enter the text or URL: ').strip()
+filename = input('Enter the file name: ').strip()
 
-    if not filename.endswith(".png"):
-        filename += ".png"
+if not data:
+    print('No data provided. Exiting.')
+    exit()
 
-    qr = qrcode.QRCode(
-        version=1,
-        error_correction=qrcode.constants.ERROR_CORRECT_L,
-        box_size=10,
-        border=2,
-    )
+if not filename:
+    print('No filename provided. Exiting.')
+    exit()
 
-    qr.add_data(data)
-    qr.make(fit=True)
-
-    img = qr.make_image(fill_color="black", back_color="white")
-
-    try:
-        img.save(filename)
-        print(f"QR code generated and saved as {filename}.")
-    except Exception as e:
-        print("Error saving file:", e)
-
-if __name__ == "__main__":
-    data = input("Enter the text or URL for the QR code: ")
-    filename = input("Enter the filename: ")
-    generate_qr_code(data, filename)
+qr = qrcode.QRCode(box_size=10, border=2)
+qr.add_data(data)
+image = qr.make_image(fill_color='black', back_color='white')
+image.save(filename)
+print(f'QR code saved as {filename}')
